@@ -19,9 +19,9 @@
                 <i>{{ session.user.email }}</i>
             </div>
         </div>
-        <a class="button is-primary" @click="Logout()">
+        <router-link class="button us-primary" @click="Logout()" to = /login>
             <strong>Log out</strong>
-        </a>
+        </router-link>
     </div>
 </template>
 

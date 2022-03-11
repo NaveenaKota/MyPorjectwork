@@ -12,7 +12,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/contact', component: Generic, props: { title: 'Contact Page!' } },
   { path: '/login', component: Login },
   { path: '/signup', component: Generic, props: { title: 'Signup Page!' } },
-  { path: '/messages', component: () => import('../pages/Wall.vue') },
+  { path: '/wall', component: () => import('../pages/Wall.vue') },
   { path: '/assignedtasks', component: Tasks },
   
 ]
@@ -25,7 +25,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-    if (['/messages', '/wall','/assignedtasks', '/feed'].includes(to.path)) { // list of paths that require login
+    if (['/wall','/assignedtasks','/feed'].includes(to.path)) { // list of paths that require login
         if (!session.user) {
             return '/login';
         }
