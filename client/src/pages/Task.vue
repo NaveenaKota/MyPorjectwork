@@ -17,7 +17,7 @@ function addTask(this: any){
         console.log(assignedUser);
         console.log(user)
         user?.tasks.unshift({ 
-          task: newTaskName.value,
+          title: newTaskName.value,
           dueDate: dueDate.value,
           isCompleted: false,
           assignedBy: assignedUser
@@ -48,7 +48,39 @@ function taskHandler(this: any, currentTab : any){
 </script>
 
 <template>
+
   <div class="section">
+    <h1><b>Add New Task</b></h1><br>
+            <div class="panel-block">
+              <form style="width: 100%;" @submit.prevent="addTask">
+                <div class="field">
+                  <div class="control has-icons-left is-expanded">
+                    <input class="input is-primary" type="text" placeholder="New Task" v-model="newTaskName" />
+                    <span class="icon is-left">
+                      <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                    </span>
+                  </div><br>
+                  <div class="control has-icons-left is-expanded">
+                    <input class="input is-primary" type="date" placeholder="Date" v-model="dueDate" />
+                    <span class="icon is-left">
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span>
+                  </div><br>
+                  <div class="control has-icons-left is-expanded">
+                    <select class="input is-primary" type="text" placeholder="Select User" v-model="assignedTo">
+                        <option v-for="userlst in users.list" :key="userlst.firstName" v-bind:value="userlst.id">{{userlst.firstName}}</option>
+                    </select>
+                    <span class="icon is-left">
+                      <i class="fas fa-book-reader" aria-hidden="true"></i>
+                    </span>
+                  </div><br>
+                  <div class="control">
+                    <button class="button is-primary">Add New Task</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+    <br><h1><b>View Exiating Task</b></h1><br>
     <div class="container">
       <div class="columns">
         <div class="column">
@@ -81,35 +113,6 @@ function taskHandler(this: any, currentTab : any){
                 </li>
               </ul>
             </div>
-            <div class="panel-block">
-              <form style="width: 100%;" @submit.prevent="addTask">
-                <div class="field has-addons">
-                  <div class="control has-icons-left is-expanded">
-                    <input class="input is-primary" type="text" placeholder="New Task" v-model="newTaskName" />
-                    <span class="icon is-left">
-                      <i class="fas fa-calendar-plus" aria-hidden="true"></i>
-                    </span>
-                  </div><br>
-                  <div class="control has-icons-left is-expanded">
-                    <input class="input is-primary" type="date" placeholder="Date" v-model="dueDate" />
-                    <span class="icon is-left">
-                      <i class="fa fa-dharmachakra" aria-hidden="true"></i>
-                    </span>
-                  </div><br>
-                  <div class="control has-icons-left is-expanded">
-                    <select class="input is-primary" type="text" placeholder="Select User" v-model="assignedTo">
-                      <option v-for="userlst in users.list" :key="userlst.firstName" v-bind:value="userlst.id">{{userlst.firstName}}</option>
-                    </select>
-                    <span class="icon is-left">
-                      <i class="fas fa-book-reader" aria-hidden="true"></i>
-                    </span>
-                  </div><br>
-                  <div class="control">
-                    <button class="button is-primary">Add</button>
-                  </div>
-                </div>
-              </form>
-            </div>
             <!-- <a class="panel-block" >
               <input type="checkbox"/>
               <span></span>
@@ -121,7 +124,7 @@ function taskHandler(this: any, currentTab : any){
                             <abbr title="title">Title</abbr>
                         </th>
                         <th>
-                            <abbr title="dueDate">Due Date(yyyy/mm/dd)</abbr>
+                            <abbr title="dueDate">Task Due Date</abbr>
                         </th>
                         <th>
                             <abbr title="assignedTo">Assigned To</abbr>
@@ -139,7 +142,7 @@ function taskHandler(this: any, currentTab : any){
                   <input type="checkbox" v-model="task.isCompleted" /> -->
                   <tr>
                
-                        <td>{{ task.task }}</td>
+                        <td>{{ task.title }}</td>
                         <td>{{ task.dueDate }}</td>
                         <td>{{session.user?.handle}}</td>
                         <td>{{task.assignedBy}}</td>
@@ -156,4 +159,8 @@ function taskHandler(this: any, currentTab : any){
 </template>
 
 <style scoped>
+
+input, select, button{
+       width: 50%;
+}
 </style>

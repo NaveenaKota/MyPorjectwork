@@ -10,7 +10,7 @@ const isOpen = ref(false);
   <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
+        <a class="navbar-item">
           <img src="https://to-do-cdn.microsoft.com/webapp/38cce120a00363d6d88c924546055c873aae9c159c1b4d9ec724687af6112fd9/preview.png" width="112" height="28" />
         </a>
         <a
@@ -29,12 +29,13 @@ const isOpen = ref(false);
       <div class="navbar-menu" :class="{ 'is-active': isOpen }">
         <div class="navbar-start">
           <router-link class="navbar-item" to="/">Home</router-link>
-          <div class="navbar-item has-dropdown is-hoverable">
+          <router-link class="navbar-item" to="/assignedtasks">All Tasks</router-link>
+          <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Tasks</a>
             <div class="navbar-dropdown">
               <router-link class="navbar-item" to="/assignedtasks">Tasks Assigned</router-link>
              </div>
-          </div>
+          </div> -->
           
         </div>
         <div class="navbar-end">
