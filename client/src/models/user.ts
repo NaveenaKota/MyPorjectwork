@@ -22,7 +22,6 @@ export const list: User[] = [
         pic: 'https://randomuser.me/api/portraits/men/1.jpg',
         id: 1,
         tasks:([
-            { title: 'Make Bulma great again',dueDate:'04/21/2022', isCompleted: true, assignedBy: "Naveena" },
             { title: 'Add some more features',dueDate:'04/21/2022', isCompleted: false, assignedBy: "Bharath" },
             { title: 'Add some more features',dueDate:'04/21/2022', isCompleted: false, assignedBy: "Yash" },
         ]),

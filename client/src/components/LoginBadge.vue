@@ -4,9 +4,9 @@
 
 <template>
     <div class="buttons" v-if="!session.user">
-        <router-link class="button is-primary" to="/signup">
+        <!-- <router-link class="button is-primary" to="/signup">
             <strong>Sign up</strong>
-        </router-link>
+        </router-link> -->
         <router-link class="button is-light" to="/login">
             Log in
         </router-link>
@@ -18,7 +18,7 @@
                 <strong>{{ session.user.firstName }} {{ session.user.lastName }}</strong> <br />
                 <i>{{ session.user.email }}</i>
             </div>
-        </div>
+        </div>&nbsp;
         <router-link class="button us-primary" @click="Logout()" to = /login>
             <strong>Log out</strong>
         </router-link>
