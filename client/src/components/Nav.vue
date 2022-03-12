@@ -30,6 +30,9 @@ const isOpen = ref(false);
         <div class="navbar-start">
           <router-link class="navbar-item" to="/">Home</router-link>
           <router-link class="navbar-item" to="/assignedtasks">All Tasks</router-link>
+           <router-link class="navbar-item" to = /Issues>
+             Report an Issue
+           </router-link>
           <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Tasks</a>
             <div class="navbar-dropdown">

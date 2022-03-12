@@ -80,7 +80,7 @@ function taskHandler(this: any, currentTab : any){
                 </div>
               </form>
             </div>
-    <br><h1><b>View Exiating Task</b></h1><br>
+    <br><h1><b>View Existing Task</b></h1><br>
     <div class="container">
       <div class="columns">
         <div class="column">

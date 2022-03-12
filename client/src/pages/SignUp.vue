@@ -8,7 +8,7 @@
     var handle= ref( '' );
     var password= ref( '' );
     var email= ref( '' );
-    
+
     function signup()
     {
         Signup(fName.value, lName.value, handle.value, password.value, email.value);
