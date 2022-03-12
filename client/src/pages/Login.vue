@@ -45,6 +45,9 @@ var password= ref( '' );
                       Login
                     </button>
                     </div>
+                     <div>
+                        <span> Don't have an account? <router-link to = /signUp class="has-text-link"> Click Here </router-link> to join us. </span>
+                    </div>
                 </form>
             </div>
         </div>

@@ -4,14 +4,16 @@ import Home from '../pages/Home.vue';
 import Generic from '../pages/Generic.vue';
 import Login from '../pages/Login.vue';
 import Tasks from '../pages/Task.vue';
+import SignUp from '../pages/SignUp.vue';
 import session from "../models/session";
 
 const routes: RouteRecordRaw[] = [
   { path: '/', component: Home },
+  { path: '/home', component: Home },
   { path: '/about', component: Generic, props: { title: 'About Page!' } },
   { path: '/contact', component: Generic, props: { title: 'Contact Page!' } },
   { path: '/login', component: Login },
-  { path: '/signup', component: Generic, props: { title: 'Signup Page!' } },
+  { path: '/signup', component: SignUp },
   { path: '/assignedtasks', component: Tasks },
   
 ]
@@ -24,7 +26,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-    if (['/wall','/assignedtasks','/feed'].includes(to.path)) { // list of paths that require login
+    if (['/wall','/assignedtasks','/feed','/home'].includes(to.path)) { // list of paths that require login
         if (!session.user) {
             return '/login';
         }
