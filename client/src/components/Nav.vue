@@ -29,7 +29,7 @@ const isOpen = ref(false);
       <div class="navbar-menu" :class="{ 'is-active': isOpen }">
         <div class="navbar-start">
           <router-link class="navbar-item" to="/">Home</router-link>
-          <router-link class="navbar-item" to="/assignedtasks">All Tasks</router-link>
+          <router-link class="navbar-item" to="/tasks">All Tasks</router-link>
            <router-link class="navbar-item" to = /Issues>
              Report an Issue
            </router-link>
@@ -39,13 +39,13 @@ const isOpen = ref(false);
               <router-link class="navbar-item" to="/assignedtasks">Tasks Assigned</router-link>
              </div>
           </div> -->
-          
+
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
             <login-badge></login-badge>
           </div>
-         
+
         </div>
       </div>
     </div>

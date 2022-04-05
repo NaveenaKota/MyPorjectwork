@@ -3,7 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from '../pages/Home.vue';
 import Generic from '../pages/Generic.vue';
 import Login from '../pages/Login.vue';
-import Tasks from '../pages/Task.vue';
+import Tasks from '../components/Tasks.vue'
 import SignUp from '../pages/SignUp.vue';
 import Issues from '../pages/Issue.vue';
 import session from "../models/session";
@@ -16,8 +16,9 @@ const routes: RouteRecordRaw[] = [
   { path: '/Issues', component: Issues },
   { path: '/Issues', component: SignUp },
   { path: '/Issues/submit', component: SignUp },
-  { path: '/assignedtasks', component: Tasks },
-  
+  // { path: '/assignedtasks', component: Tasks },
+  {path: '/tasks', component:Tasks}
+
 ]
 
 const router = createRouter({
