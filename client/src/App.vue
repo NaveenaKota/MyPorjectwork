@@ -6,13 +6,11 @@
 </template>
 
 <script>
-import Tasks from "./components/Tasks.vue"
 import Nav from "./components/Nav.vue"
 export default {
   name: "App",
   components: {
     Nav,
-    Tasks,
   },
 }
 </script>
