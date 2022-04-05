@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import Vue from 'vue/dist/vue.js'
 import { createPinia } from 'pinia';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './assets/style/main.scss';
