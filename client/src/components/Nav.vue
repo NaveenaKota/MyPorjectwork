@@ -30,6 +30,8 @@ const isOpen = ref(false);
         <div class="navbar-start">
           <router-link class="navbar-item" to="/">Home</router-link>
           <router-link class="navbar-item" to="/tasks">All Tasks</router-link>
+          <router-link class="navbar-item" to="/currentTasks">Current Tasks</router-link>
+           <router-link class="navbar-item" to="/completed">Completed Tasks</router-link>
            <router-link class="navbar-item" to = /Issues>
              Report an Issue
            </router-link>

@@ -4,6 +4,8 @@ import Home from '../pages/Home.vue';
 import Generic from '../pages/Generic.vue';
 import Login from '../pages/Login.vue';
 import Tasks from '../components/Tasks.vue'
+import CurrentTasks from '../components/CurrentTasks.vue'
+import completed from '../components/CompletedTask.vue'
 import SignUp from '../pages/SignUp.vue';
 import Issues from '../pages/Issue.vue';
 import session from "../models/session";
@@ -17,7 +19,9 @@ const routes: RouteRecordRaw[] = [
   { path: '/Issues', component: SignUp },
   { path: '/Issues/submit', component: SignUp },
   // { path: '/assignedtasks', component: Tasks },
-  {path: '/tasks', component:Tasks}
+  {path: '/tasks', component:Tasks},
+  {path: '/CurrentTasks', component:CurrentTasks},
+  {path: '/Completed', component:completed}
 
 ]
 
