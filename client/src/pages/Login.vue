@@ -39,7 +39,12 @@ const login = () => {
 	<div class="btns">
 		<input type="text" class="input" name="username" placeholder="Username" v-model="username">
 		<input type="password" class="input" name="password" placeholder="Password" v-model="password">
-		<button class="button" @click="login">Log In</button>
+		<button class="button" @click="login">
+			<span class="icon is-small">
+				<i class="fa-solid fa-right-to-bracket"></i>
+			</span>
+			<span>Log In</span>
+		</button>
 	</div>
 	<p class="error visible">{{errorText}}</p>
 </template>

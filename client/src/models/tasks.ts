@@ -24,7 +24,7 @@ export const tasks = ref<ITask[]>([
 		for: 'Naveena',
 	},
 	{
-		by: 'user_1',
+		by: 'user_2',
 		date: '11-05-2022',
 		done: false,
 		title: 'Do XYZ',
