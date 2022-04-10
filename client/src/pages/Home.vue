@@ -17,8 +17,18 @@ const signupClick = () => {
 	<h2 class="subtitle">Create and manage tasks with ease</h2>
 	<img class="ill" src="../assets/todo.svg">
 	<div class="btns">
-		<button class="button" @click="loginClick">Log In</button>
-		<button class="button" @click="signupClick">Sign Up</button>
+		<button class="button" @click="loginClick">
+			<span class="icon is-small">
+				<i class="fa-solid fa-right-to-bracket"></i>
+			</span>
+			<span>Log In</span>
+		</button>
+		<button class="button" @click="signupClick">
+			<span class="icon is-small">
+				<i class="fa-solid fa-user-plus"></i>
+			</span>
+			<span>Sign Up</span>
+		</button>
 	</div>
 </template>
 

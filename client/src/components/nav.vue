@@ -121,15 +121,24 @@ const addTask = () => {
 			font-weight: 600;
 			color: rgb(168, 168, 168);
 			cursor: pointer;
-			height: 80px;
-			width: 140px;
+			height: 50px;
+			width: 100px;
+			margin: 0 40px;
 			display: flex;
+			border-radius: 5px;
 			align-items: center;
 			justify-content: center;
+			background-color: white;
+
+			&:hover {
+				color: rgb(46, 46, 46);
+				border: solid 2px #FF40E4;
+			}
 		}
 
 		.current {
 			color: rgb(46, 46, 46);
+			border: solid 2px #FF40E4;
 		}
 	}
 

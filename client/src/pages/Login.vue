@@ -34,7 +34,7 @@ const login = () => {
 </script>
 
 <template>
-	<h1 class="title">Log In</h1>
+	<h1 class="title">LOG IN</h1>
 	<img class="ill" src="../assets/login.svg">
 	<div class="btns">
 		<input type="text" class="input" name="username" placeholder="Username" v-model="username">

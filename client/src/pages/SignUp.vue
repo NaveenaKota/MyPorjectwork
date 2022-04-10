@@ -39,13 +39,18 @@ const signup = () => {
 </script>
 
 <template>
-	<h1 class="title">Sign Up</h1>
+	<h1 class="title">SIGN UP</h1>
 	<img class="ill" src="../assets/signup.svg">
 	<div class="btns">
 		<input type="text" class="input" name="username" required placeholder="Username" v-model="username">
 		<input type="password" class="input" name="password" required placeholder="Password" v-model="password">
 		<input type="password" class="input" name="password" required placeholder="Confirm" v-model="confirm">
-		<button class="button" type="button" @click="signup">Sign Up</button>
+		<button class="button" type="button" @click="signup">
+			<span class="icon is-small">
+				<i class="fa-solid fa-user-plus"></i>
+			</span>
+			<span>Sign Up</span>
+		</button>
 	</div>
 	<p class="error visible">{{errorText}}</p>
 </template>
@@ -65,7 +70,7 @@ const signup = () => {
 	position: absolute;
 	top: 27%;
 	transform: translate(-50%, -50%);
-	right: 19.5%;
+	right: 19%;
 	font-size: 48px;
 }
 .btns {
