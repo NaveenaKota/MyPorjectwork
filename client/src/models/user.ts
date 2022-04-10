@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
 
-interface IUser {
+export interface IUser {
 	username: string;
 	password: string;
 	avatar: string;

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { ref } from 'vue';
+import { setSesion } from '../models/session';
 import { users } from '../models/user';
 import router from '../router';
 
@@ -23,6 +24,8 @@ const login = () => {
 		error.value = 'error visible'
 		return;
 	}
+
+	setSesion(username.value);
 
 	router.push("./tasks");
 	error.value = 'error';
