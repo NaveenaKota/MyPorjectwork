@@ -13,7 +13,7 @@ const logout = () => {
 
 const avatar = getUser().avatar;
 
-const classView = (v: string) => v === current.value ? 'view current' : 'view';
+const classView = (v: string) => v === views[current.value] ? 'view current' : 'view';
 
 </script>
 
@@ -55,6 +55,7 @@ const classView = (v: string) => v === current.value ? 'view current' : 'view';
 			width: 140px;
 			display: flex;
 			align-items: center;
+			justify-content: center;
 		}
 
 		.current {
@@ -74,7 +75,8 @@ const classView = (v: string) => v === current.value ? 'view current' : 'view';
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		margin-right: 30px;
+		margin-right: 60px;
+		margin-bottom: 0;
 
 		img {
 			margin-right: 30px;
