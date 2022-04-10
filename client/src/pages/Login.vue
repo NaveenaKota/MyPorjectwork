@@ -37,8 +37,22 @@ const login = () => {
 	<h1 class="title">LOG IN</h1>
 	<img class="ill" src="../assets/login.svg">
 	<div class="btns">
-		<input type="text" class="input" name="username" placeholder="Username" v-model="username">
-		<input type="password" class="input" name="password" placeholder="Password" v-model="password">
+		<div class="field">
+			<p class="control has-icons-left">
+				<input type="text" class="input" name="username" placeholder="Username" v-model="username">
+				<span class="icon is-small is-left">
+					<i class="fa-solid fa-user"></i>
+				</span>
+			</p>
+		</div>
+		<div class="field">
+			<p class="control has-icons-left">
+			<input type="password" class="input" name="password" placeholder="Password" v-model="password">
+				<span class="icon is-small is-left">
+					<i class="fa-solid fa-key"></i>
+				</span>
+			</p>
+		</div>
 		<button class="button" @click="login">
 			<span class="icon is-small">
 				<i class="fa-solid fa-right-to-bracket"></i>
@@ -53,7 +67,7 @@ const login = () => {
 .error {
 	color: red;
 	position: absolute;
-	top: 64%;
+	top: 62%;
 	right: 24%;
 	display: none;
 }
@@ -64,7 +78,7 @@ const login = () => {
 	position: absolute;
 	top: 27%;
 	transform: translate(-50%, -50%);
-	right: 21%;
+	right: 20%;
 	font-size: 48px;
 }
 .btns {
@@ -77,7 +91,7 @@ const login = () => {
 
 	button, input {
 		width: 250px;
-		margin-top: 30px;
+		margin-bottom: 30px;
 	}
 }
 .ill {

@@ -42,9 +42,30 @@ const signup = () => {
 	<h1 class="title">SIGN UP</h1>
 	<img class="ill" src="../assets/signup.svg">
 	<div class="btns">
-		<input type="text" class="input" name="username" required placeholder="Username" v-model="username">
-		<input type="password" class="input" name="password" required placeholder="Password" v-model="password">
-		<input type="password" class="input" name="password" required placeholder="Confirm" v-model="confirm">
+		<div class="field">
+			<p class="control has-icons-left">
+			<input type="text" class="input" name="username" required placeholder="Username" v-model="username">
+				<span class="icon is-small is-left">
+					<i class="fa-solid fa-user"></i>
+				</span>
+			</p>
+		</div>
+		<div class="field">
+			<p class="control has-icons-left">
+			<input type="password" class="input" name="password" required placeholder="Password" v-model="password">
+				<span class="icon is-small is-left">
+					<i class="fa-solid fa-key"></i>
+				</span>
+			</p>
+		</div>
+		<div class="field">
+			<p class="control has-icons-left">
+			<input type="password" class="input" name="password" required placeholder="Confirm" v-model="confirm">
+				<span class="icon is-small is-left">
+					<i class="fa-solid fa-key"></i>
+				</span>
+			</p>
+		</div>
 		<button class="button" type="button" @click="signup">
 			<span class="icon is-small">
 				<i class="fa-solid fa-user-plus"></i>
@@ -59,7 +80,7 @@ const signup = () => {
 .error {
 	color: red;
 	position: absolute;
-	top: 67%;
+	top: 76%;
 	right: 24%;
 	display: none;
 }
@@ -77,13 +98,13 @@ const signup = () => {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	top: 50%;
+	top: 60%;
 	transform: translate(-50%, -50%);
 	right: 15%;
 
 	button, input {
 		width: 250px;
-		margin-top: 30px;
+		margin-bottom: 30px;
 	}
 }
 .ill {

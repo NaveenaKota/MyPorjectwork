@@ -70,14 +70,24 @@ const addTask = () => {
   	<div class="modal-content">
   	  <div class="card">
 				<h1>Add Task</h1>
-				<input class="input is-normal" type="text" placeholder="Title" v-model="title" />
 
-				<div class="dropdown is-hoverable">
+				<div class="field">
+					<p class="control has-icons-left">
+						<input class="input is-normal" type="text" placeholder="Title" v-model="title" />
+						<span class="icon is-small is-left">
+							<i class="fa-solid fa-align-justify"></i>
+						</span>
+					</p>
+				</div>
+				<div class="dropdown is-hoverable" style="margin-bottom: 10px;">
 					<div class="dropdown-trigger">
 						<div class="field">
-							<div class="control">
+							<p class="control has-icons-left">
 								<input class="input is-normal" type="search	" placeholder="For" v-model="tfor" />
-							</div>
+								<span class="icon is-small is-left">
+									<i class="fa-solid fa-user"></i>
+								</span>
+							</p>
 						</div>
 					</div>
 					<div class="dropdown-menu" id="dropdown-menu" role="menu">
@@ -86,8 +96,14 @@ const addTask = () => {
 						</div>
 					</div>
 				</div>
-
-				<input class="input is-normal" type="date" placeholder="Date" v-model="date" />
+				<div class="field">
+					<p class="control has-icons-left">
+						<input class="input is-normal" type="date" placeholder="Date" v-model="date" />
+						<span class="icon is-small is-left">
+							<i class="fa-solid fa-calendar-days"></i>
+						</span>
+					</p>
+				</div>
 				<button class="button is-normal" @click="addTask">
 					<span class="icon is-small">
 						<i class="fa-solid fa-plus"></i>
@@ -186,12 +202,18 @@ const addTask = () => {
 		h1 {
 			font-size: 24px;
 			font-weight: 500;
-			margin-bottom: 20px;
+			margin-bottom: 60px;
+		}
+
+		.field {
+			width: 80%;
 		}
 
 		.dropdown.is-hoverable {
 			width: 80%;
-
+			.field {
+				width: 100%;
+			}
 			.dropdown-trigger {
 				width: 100%;
 
@@ -201,13 +223,15 @@ const addTask = () => {
 			}
 		}
 
+		.dropdown-menu {
+			margin-top: -20px;
+		}
+
 		input {
-			margin-top: 20px;
-			width: 80%;
+			margin-bottom: 20px;
 		}
 
 		button {
-			margin-top: 20px;
 			width: 80%;
 		}
 	}
