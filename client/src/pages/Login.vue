@@ -1,60 +1,82 @@
 <script setup lang="ts">
-import { Login } from '../models/session';
-import { ref } from 'vue';
-var handle= ref( '' );
-var password= ref( '' );
 
-     function badLogin()
-     {
-         Login('naveena', 'meme')
-     }
-     function login()
-     {
-         Login(handle.value, password.value)
-     }
-    
+import { ref } from 'vue';
+import { users } from '../models/user';
+import router from '../router';
+
+const username = ref('');
+const password = ref('');
+
+const error = ref('error');
+const errorText = ref('');
+
+const login = () => {
+	if(username.value === "" || password.value === "") {
+		errorText.value = "Some fields are empty";
+		return;
+	}
+
+	const valid = users.filter(u => u.username === username.value && u.password === password.value).length > 0;
+
+	if(!valid) {
+		errorText.value = "Credentials are incorrect";
+		error.value = 'error visible'
+		return;
+	}
+
+	router.push("./tasks");
+	error.value = 'error';
+}
+
 </script>
 
 <template>
-<div class="columns is-centered">
-        <div class="column is-half">
-            <div class="section">
-                <form class="box">
-                    <div class="field">
-                        <label class="label">Username</label>
-                        <div class="control">
-                        <input class="input" v-model="handle">
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label">Password</label>
-                        <div class="control">
-                        <input class="input" v-model="password">
-                        </div>
-                    </div>
-                    <div class="field">
-                      <label for="" class="checkbox">
-                        <input type="checkbox">
-                           Remember me
-                      </label>
-                    </div>
-
-                    <div class="field">
-                     <button class="button is-success" @click="login">
-                      Login
-                    </button>
-                    </div>
-                     <div>
-                        <span> Don't have an account? <router-link to = /signUp class="has-text-link"> Click Here </router-link> to join us. </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>   
-
+	<h1 class="title">Log In</h1>
+	<img class="ill" src="../assets/login.svg">
+	<div class="btns">
+		<input type="text" class="input" name="username" placeholder="Username" v-model="username">
+		<input type="password" class="input" name="password" placeholder="Password" v-model="password">
+		<button class="button" @click="login">Log In</button>
+	</div>
+	<p class="error visible">{{errorText}}</p>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.error {
+	color: red;
+	position: absolute;
+	top: 64%;
+	right: 24%;
+	display: none;
+}
+.visible {
+	display: unset;
+}
+.title {
+	position: absolute;
+	top: 27%;
+	transform: translate(-50%, -50%);
+	right: 21%;
+	font-size: 48px;
+}
+.btns {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	right: 15%;
 
+	button, input {
+		width: 250px;
+		margin-top: 30px;
+	}
+}
+.ill {
+	position: absolute;
+	width: 700px;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 10%;
+}
 </style>
