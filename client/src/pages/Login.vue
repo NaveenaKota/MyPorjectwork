@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { ref } from 'vue';
-import { setSesion } from '../models/session';
+import { setSesion, startSession } from '../models/session';
 import { users } from '../models/user';
 import router from '../router';
 
@@ -12,23 +12,25 @@ const error = ref('error');
 const errorText = ref('');
 
 const login = () => {
-	if(username.value === "" || password.value === "") {
-		errorText.value = "Some fields are empty";
-		return;
-	}
+	// if(username.value === "" || password.value === "") {
+	// 	errorText.value = "Some fields are empty";
+	// 	return;
+	// }
 
-	const valid = users.filter(u => u.username === username.value && u.password === password.value).length > 0;
+	startSession(username.value, password.value);
 
-	if(!valid) {
-		errorText.value = "Credentials are incorrect";
-		error.value = 'error visible'
-		return;
-	}
+	// const valid = users.filter(u => u.username === username.value && u.password === password.value).length > 0;
 
-	setSesion(username.value);
+	// if(!valid) {
+	// 	errorText.value = "Credentials are incorrect";
+	// 	error.value = 'error visible'
+	// 	return;
+	// }
 
-	router.push("./tasks");
-	error.value = 'error';
+	// setSesion(username.value);
+
+	// router.push("./tasks");
+	// error.value = 'error';
 }
 
 </script>
