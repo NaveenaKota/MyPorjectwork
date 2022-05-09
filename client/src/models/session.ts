@@ -1,38 +1,50 @@
 import { reactive } from 'vue';
 
+import { loginReq, LoginRes } from './request';
 import { IUser, users } from './user';
 
 export interface ISession {
-	username: string | null;
+	avatar: string | null;
 	loggedIn: boolean;
-	avatar: string;
+	token: string | null;
+	username: string | null;
 }
 
-export const session = reactive<ISession>({
+const sessionNull: ISession = {
+	avatar: null,
 	loggedIn: false,
+	token: null,
 	username: null,
-	avatar: '',
-});
+}
+
+export const session = reactive<ISession>(sessionNull);
 
 export const startSession = async (username: string, password: string) => {
-	const body = JSON.stringify({ username, password });
-	const req = await fetch('http://localhost:3001/api/users/login', {
-		method: 'POST',
-		body,
-	});
-	const res = await req.json();
+	const res: LoginRes = await loginReq(username, password);
 
-	console.log(res);
+	if(res.success !== true)
+		return res.errors[0];
+	else {
+		setSesion(res);
+		return true;
+	}
 };
 
-export const setSesion = (username: string) => {
+export const setSesion = (res: LoginRes) => {
+	const { username, token, avatar } = res.data;
+
+	session.avatar = avatar;
+	session.token = token;
 	session.username = username;
+
 	session.loggedIn = true;
 };
 
 export const endSession = () => {
-	session.username = null;
-	session.loggedIn = false;
+	session.avatar = sessionNull.avatar;
+	session.loggedIn = sessionNull.loggedIn;
+	session.token = sessionNull.token;
+	session.username = sessionNull.username;
 };
 
 export const getUser = (): IUser => {

@@ -2,35 +2,32 @@
 
 import { ref } from 'vue';
 import { setSesion, startSession } from '../models/session';
-import { users } from '../models/user';
 import router from '../router';
 
 const username = ref('');
 const password = ref('');
 
+// error element class
 const error = ref('error');
+// error text
 const errorText = ref('');
 
-const login = () => {
-	// if(username.value === "" || password.value === "") {
-	// 	errorText.value = "Some fields are empty";
-	// 	return;
-	// }
+const login = async () => {
+	if(username.value === "" || password.value === "") {
+		errorText.value = "Some fields are empty";
+		return;
+	}
 
-	startSession(username.value, password.value);
+	const res: boolean | string = await startSession(username.value, password.value);
 
-	// const valid = users.filter(u => u.username === username.value && u.password === password.value).length > 0;
+	if(res !== true) {
+		errorText.value = res;
+		error.value = 'error visible'
+		return;
+	}
 
-	// if(!valid) {
-	// 	errorText.value = "Credentials are incorrect";
-	// 	error.value = 'error visible'
-	// 	return;
-	// }
-
-	// setSesion(username.value);
-
-	// router.push("./tasks");
-	// error.value = 'error';
+	router.push("./tasks");
+	error.value = 'error';
 }
 
 </script>
@@ -68,9 +65,11 @@ const login = () => {
 <style lang="scss" scoped>
 .error {
 	color: red;
+	width: 250px;
+	text-align: center;
 	position: absolute;
-	top: 62%;
-	right: 24%;
+	top: 64%;
+	right: 21.5%;
 	display: none;
 }
 .visible {
