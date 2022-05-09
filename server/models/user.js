@@ -1,5 +1,3 @@
-/* B"H
- */
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { db, isConnected, ObjectId } = require('./mongo');
@@ -28,24 +26,8 @@ const list = [
 	},
 ];
 
-async function get(id) {
-	const user = await collection.findOne({ _id: new ObjectId(id) });
-	if (!user) {
-		throw { statusCode: 404, message: 'User not found' };
-	}
-	return { ...user, password: undefined };
-}
-
-async function getByHandle(handle) {
-	const user = await collection.findOne({ handle });
-	if (!user) {
-		throw { statusCode: 404, message: 'User not found' };
-	}
-	return { ...user, password: undefined };
-}
-
-async function remove(id) {
-	const user = await collection.findOneAndDelete({ _id: new ObjectId(id) });
+async function remove(username) {
+	const user = await collection.findOneAndDelete({ username });
 
 	return { ...user.value, password: undefined };
 }
