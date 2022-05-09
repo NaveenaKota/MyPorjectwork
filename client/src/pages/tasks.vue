@@ -39,7 +39,7 @@ const check = (task: ITask) => {
 <template>
 	<NavBar />
 	<div class="content">
-		<div class="task card" v-for="task in filterTasks()" :key="task.title">
+		<div class="task card" v-for="task in filterTasks()" :key="task._id">
 			<button class="button" @click="check(task)">{{ task.done ? '✘' : '✔' }}</button>
 			<div class="bar">
 				<div>
