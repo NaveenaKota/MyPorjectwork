@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NavBar from '../components/nav.vue';
-import { getTasks } from '../models/request';
+import { getTasks, setTask } from '../models/request';
 import { session } from '../models/session';
 import { ITask, sortTasks, tasks } from '../models/tasks';
 import { current } from '../models/views';
@@ -31,7 +31,7 @@ const check = (task: ITask) => {
 	const state = !task.done;
 	task.done = state;
 	
-	//
+	setTask(task);
 };
 
 </script>
