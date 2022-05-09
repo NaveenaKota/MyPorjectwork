@@ -6,8 +6,6 @@ const collection = db.db('todo').collection('users');
 
 const SALT_ROUNDS = +process.env.SALT_ROUNDS;
 
-let hieghstId = 3;
-
 const list = [
 	{
 		username: 'Naveena',
@@ -26,13 +24,13 @@ const list = [
 	},
 ];
 
-const get = async (username) => {
+const get = async username => {
 	const user = await collection.findOne({ username });
 	if (!user) {
 		throw { statusCode: 404, message: 'User not found' };
 	}
 	return { ...user, password: undefined };
-} 
+};
 
 async function remove(username) {
 	const user = await collection.findOneAndDelete({ username });
@@ -90,24 +88,17 @@ const seed = () => {
 	return collection.insertMany(l);
 };
 
+const create = async user => {
+	user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+	const result = await collection.insertOne({...user, _id: undefined});
+	return await get(result.insertedId);
+};
+
 module.exports = {
 	get,
 	collection,
 	seed,
-	async create(user) {
-		user.id = ++hieghstId;
-
-		if (!user.handle) {
-			throw { statusCode: 400, message: 'Handle is required' };
-		}
-		user.password = await bcrypt.hash(user.password, +process.env.SALT_ROUNDS);
-		console.log(user);
-
-		const result = await collection.insertOne(user);
-		user = await get(result.insertedId);
-
-		return { ...user, password: undefined };
-	},
+	create,
 	remove,
 	update,
 	login,

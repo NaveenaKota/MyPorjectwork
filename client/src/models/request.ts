@@ -32,9 +32,7 @@ export const loginReq = async (
 	const req = await fetch(loginUrl, {
 		method: 'POST',
 		body,
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: { 'Content-Type': 'application/json' },
 	});
 
 	return req.json();
@@ -77,6 +75,17 @@ export const addTask = async (task: ITask): Promise<setTaskRes> => {
 			Authorization,
 			'Content-Type': 'application/json',
 		},
+	});
+
+	return req.json();
+};
+
+export const addUser = async (user: IUser): Promise<IRes<IUser>> => {
+	const body = JSON.stringify(user);
+	const req = await fetch(usersUrl, {
+		method: 'POST',
+		body,
+		headers: { 'Content-Type': 'application/json' },
 	});
 
 	return req.json();

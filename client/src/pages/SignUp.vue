@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { ref } from 'vue';
+import { addUser } from '../models/request';
 import { users } from '../models/user';
 import router from '../router';
 
@@ -11,30 +12,32 @@ const confirm = ref('');
 const error = ref('error');
 const errorText = ref('');
 
-const signup = () => {
-	if(username.value === "" || password.value === "" || confirm.value === "") {
+const signup = async () => {
+	if (username.value === "" || password.value === "" || confirm.value === "") {
 		errorText.value = "Some fields are empty";
 		return;
 	}
 
-	if(password.value !== confirm.value) {
+	if (password.value !== confirm.value) {
 		errorText.value = "Passwords don't match";
-		error.value = 'error visible'
+		error.value = 'error visible';
 		return;
 	}
 
 	const { floor, random } = Math;
 	const n = floor(random() * 100);
 
-	users.push({
+	const user: any = {
 		username: username.value,
 		password: password.value,
 		avatar: `https://randomuser.me/api/portraits/men/${n}.jpg`
-	});
+	};
 
-	router.push("./tasks");
+	await addUser(user);
+
+	router.push("./login");
 	error.value = 'error';
-}
+};
 
 </script>
 
@@ -44,7 +47,7 @@ const signup = () => {
 	<div class="btns">
 		<div class="field">
 			<p class="control has-icons-left">
-			<input type="text" class="input" name="username" required placeholder="Username" v-model="username">
+				<input type="text" class="input" name="username" required placeholder="Username" v-model="username">
 				<span class="icon is-small is-left">
 					<i class="fa-solid fa-user"></i>
 				</span>
@@ -52,7 +55,7 @@ const signup = () => {
 		</div>
 		<div class="field">
 			<p class="control has-icons-left">
-			<input type="password" class="input" name="password" required placeholder="Password" v-model="password">
+				<input type="password" class="input" name="password" required placeholder="Password" v-model="password">
 				<span class="icon is-small is-left">
 					<i class="fa-solid fa-key"></i>
 				</span>
@@ -60,7 +63,7 @@ const signup = () => {
 		</div>
 		<div class="field">
 			<p class="control has-icons-left">
-			<input type="password" class="input" name="password" required placeholder="Confirm" v-model="confirm">
+				<input type="password" class="input" name="password" required placeholder="Confirm" v-model="confirm">
 				<span class="icon is-small is-left">
 					<i class="fa-solid fa-key"></i>
 				</span>
@@ -73,7 +76,7 @@ const signup = () => {
 			<span>Sign Up</span>
 		</button>
 	</div>
-	<p class="error visible">{{errorText}}</p>
+	<p class="error visible">{{ errorText }}</p>
 </template>
 
 <style lang="scss" scoped>
@@ -84,9 +87,11 @@ const signup = () => {
 	right: 24%;
 	display: none;
 }
+
 .visible {
 	display: unset;
 }
+
 .title {
 	position: absolute;
 	top: 27%;
@@ -94,6 +99,7 @@ const signup = () => {
 	right: 19%;
 	font-size: 48px;
 }
+
 .btns {
 	display: flex;
 	flex-direction: column;
@@ -102,11 +108,13 @@ const signup = () => {
 	transform: translate(-50%, -50%);
 	right: 15%;
 
-	button, input {
+	button,
+	input {
 		width: 250px;
 		margin-bottom: 30px;
 	}
 }
+
 .ill {
 	position: absolute;
 	width: 700px;

@@ -5,14 +5,16 @@ import { current, views, setCurrent } from '../models/views';
 import { users } from '../models/user';
 import { ref } from 'vue';
 import { tasks } from '../models/tasks';
-import { addTask, getAllUsers } from '../models/request';
+import { addTask, getAllUsers, getTasks } from '../models/request';
 
-if(!session.loggedIn) router.push('./login');
+if (!session.loggedIn) router.push('./login');
+
+if (session.loggedIn) getTasks();
 
 const logout = () => {
 	endSession();
 	router.push('./login');
-}
+};
 
 const avatar = session.avatar || "";
 
@@ -29,10 +31,10 @@ const date = ref('');
 const openModal = () => {
 	getAllUsers();
 	modalState.value = true;
-}
+};
 
 const onAddTask = async () => {
-	if(!session.username) return;
+	if (!session.username) return;
 
 	const task = {
 		_id: "",
@@ -50,7 +52,7 @@ const onAddTask = async () => {
 	tfor.value = "";
 	date.value = "";
 	modalState.value = false;
-}
+};
 
 </script>
 
@@ -73,14 +75,14 @@ const onAddTask = async () => {
 			</button>
 		</div>
 		<div class="views">
-			<div :class="classView(view)" v-for="view in views" @click="setCurrent(view)">{{view}}</div>
+			<div :class="classView(view)" v-for="view in views" @click="setCurrent(view)">{{ view }}</div>
 		</div>
 	</div>
 
 	<div :class="modalClass(modalState)">
-  	<div class="modal-background" @click="()=>modalState=false"></div>
-  	<div class="modal-content">
-  	  <div class="card">
+		<div class="modal-background" @click="() => modalState = false"></div>
+		<div class="modal-content">
+			<div class="card">
 				<h1>Add Task</h1>
 
 				<div class="field">
@@ -104,7 +106,8 @@ const onAddTask = async () => {
 					</div>
 					<div class="dropdown-menu" id="dropdown-menu" role="menu">
 						<div class="dropdown-content">
-								<a href="#" class="dropdown-item" v-for="user in users" @click="()=>tfor=user.username">{{user.username}}</a>
+							<a href="#" class="dropdown-item" v-for="user in users"
+								@click="() => tfor = user.username">{{ user.username }}</a>
 						</div>
 					</div>
 				</div>
@@ -123,8 +126,8 @@ const onAddTask = async () => {
 					<span>Add</span>
 				</button>
 			</div>
-  	</div>
-  	<button class="modal-close is-large" aria-label="close" @click="()=>modalState=false"></button>
+		</div>
+		<button class="modal-close is-large" aria-label="close" @click="() => modalState = false"></button>
 	</div>
 </template>
 
@@ -202,6 +205,7 @@ const onAddTask = async () => {
 .modal-content {
 	width: 500px;
 	height: 600px;
+
 	.card {
 		display: flex;
 		height: 100%;
@@ -223,9 +227,11 @@ const onAddTask = async () => {
 
 		.dropdown.is-hoverable {
 			width: 80%;
+
 			.field {
 				width: 100%;
 			}
+
 			.dropdown-trigger {
 				width: 100%;
 

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import NavBar from '../components/nav.vue';
-import { getTasks, setTask } from '../models/request';
+import { setTask } from '../models/request';
 import { session } from '../models/session';
 import { ITask, sortTasks, tasks } from '../models/tasks';
 import { current } from '../models/views';
-
-getTasks();
 
 const filterTasks = () => {
 	if (!session.loggedIn) return [];
