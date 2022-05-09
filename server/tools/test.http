@@ -7,8 +7,12 @@ Content-Type: application/json
 	"password": "Naveena"
 }
 
+### seed users
+POST http://localhost:3001/api/users/seed
+
 ### get all users
 GET http://localhost:3001/api/users
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjc3ZjJhMGIyYzhkZjU4YmI3MjY4MWMiLCJ1c2VybmFtZSI6Ik5hdmVlbmEiLCJhdmF0YXIiOiJodHRwczovL3JhbmRvbXVzZXIubWUvYXBpL3BvcnRyYWl0cy93b21lbi82LmpwZyIsImlhdCI6MTY1MjEyMDUzNH0.vCzv6B1Vz--pd11qoeFb8uTwxIfZRvb2txfZ0Cs3Ze8
 
 ### get all tasks
 GET http://localhost:3001/api/posts

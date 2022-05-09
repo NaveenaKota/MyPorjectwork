@@ -1,9 +1,5 @@
 const { db, ObjectId } = require('./mongo');
-const userModel = require('./user');
-
 const collection = db.db('todo').collection('tasks');
-
-let hieghstId = 3;
 
 const list = [
 	{
@@ -29,23 +25,15 @@ const list = [
 	},
 ];
 
-const includeUser = async post => ({
-	...post,
-	// user: await userModel.get(post.by),
-});
-
 async function get(id) {
 	const post = await collection.findOne({ _id: new ObjectId(id) });
-	if (!post) {
-		throw { status: 404, message: 'Post not found' };
-	}
-	return includeUser(post);
+	if (!post) throw { status: 404, message: 'Post not found' };
+	return post;
 }
 
 async function remove(id) {
 	const post = await collection.findOneAndDelete({ _id: new ObjectId(id) });
-
-	return includeUser(post.value);
+	return post.value;
 }
 
 async function update(id, task) {
@@ -55,29 +43,29 @@ async function update(id, task) {
 		{ returnDocument: 'after' }
 	);
 
-	return includeUser(task);
+	return task;
 }
 
 function seed() {
 	return collection.insertMany(list);
 }
 
+const create = async post => {
+	const result = await collection.insertOne({ ...post, _id: undefined });
+	post = await get(result.insertedId);
+	return post;
+};
+
+const getList = async () => {
+	const posts = await collection.find({}).toArray();
+	return Promise.all(posts.map(x => x));
+};
+
 module.exports = {
-	async create(post) {
-		post.id = ++hieghstId;
-
-		const result = await collection.insertOne(post);
-		post = await get(result.insertedId);
-
-		return includeUser(post);
-	},
+	create,
 	remove,
 	update,
-	async getList() {
-		const posts = await collection.find({}).toArray();
-
-		return Promise.all(posts.map(x => includeUser(x)));
-	},
+	getList,
 	seed,
 };
 

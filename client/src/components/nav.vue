@@ -5,6 +5,7 @@ import { current, views, setCurrent } from '../models/views';
 import { users } from '../models/user';
 import { ref } from 'vue';
 import { tasks } from '../models/tasks';
+import { addTask, getAllUsers } from '../models/request';
 
 if(!session.loggedIn) router.push('./login');
 
@@ -25,16 +26,26 @@ const title = ref('');
 const tfor = ref('');
 const date = ref('');
 
-const addTask = () => {
+const openModal = () => {
+	getAllUsers();
+	modalState.value = true;
+}
+
+const onAddTask = async () => {
 	if(!session.username) return;
-	tasks.value.push({
+
+	const task = {
 		_id: "",
 		by: session.username,
 		date: date.value,
 		done: false,
 		for: tfor.value,
 		title: title.value
-	});
+	};
+
+	addTask(task);
+	tasks.value.push(task);
+
 	title.value = "";
 	tfor.value = "";
 	date.value = "";
@@ -46,7 +57,7 @@ const addTask = () => {
 <template>
 	<div class="contain">
 		<h1 class="title">T A S K S</h1>
-		<button class="button add" @click="()=>modalState = true">
+		<button class="button add" @click="openModal">
 			<span class="icon is-small">
 				<i class="fa-solid fa-plus"></i>
 			</span>
@@ -105,7 +116,7 @@ const addTask = () => {
 						</span>
 					</p>
 				</div>
-				<button class="button is-normal" @click="addTask">
+				<button class="button is-normal" @click="onAddTask">
 					<span class="icon is-small">
 						<i class="fa-solid fa-plus"></i>
 					</span>
