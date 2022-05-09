@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { db, isConnected, ObjectId } = require('./mongo');
+const { db, ObjectId } = require('./mongo');
 
 const collection = db.db('todo').collection('users');
 
@@ -25,6 +25,14 @@ const list = [
 		avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
 	},
 ];
+
+const get = async (username) => {
+	const user = await collection.findOne({ username });
+	if (!user) {
+		throw { statusCode: 404, message: 'User not found' };
+	}
+	return { ...user, password: undefined };
+} 
 
 async function remove(username) {
 	const user = await collection.findOneAndDelete({ username });
@@ -83,9 +91,9 @@ const seed = () => {
 };
 
 module.exports = {
+	get,
 	collection,
 	seed,
-	getByHandle,
 	async create(user) {
 		user.id = ++hieghstId;
 

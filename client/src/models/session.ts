@@ -1,7 +1,6 @@
 import { reactive } from 'vue';
 
 import { loginReq, LoginRes } from './request';
-import { IUser, users } from './user';
 
 export interface ISession {
 	avatar: string | null;
@@ -45,8 +44,4 @@ export const endSession = () => {
 	session.loggedIn = sessionNull.loggedIn;
 	session.token = sessionNull.token;
 	session.username = sessionNull.username;
-};
-
-export const getUser = (): IUser => {
-	return users.filter(u => u.username === session.username)[0];
 };

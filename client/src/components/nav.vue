@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router from '../router';
-import { endSession, getUser, session } from '../models/session';
+import { endSession, session } from '../models/session';
 import { current, views, setCurrent } from '../models/views';
 import { users } from '../models/user';
 import { ref } from 'vue';
@@ -13,7 +13,7 @@ const logout = () => {
 	router.push('./login');
 }
 
-const avatar = getUser().avatar;
+const avatar = session.avatar || "";
 
 const classView = (v: string) => v === views[current.value] ? 'view current' : 'view';
 
@@ -28,6 +28,7 @@ const date = ref('');
 const addTask = () => {
 	if(!session.username) return;
 	tasks.value.push({
+		_id: "",
 		by: session.username,
 		date: date.value,
 		done: false,

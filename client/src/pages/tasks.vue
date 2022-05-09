@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import NavBar from '../components/nav.vue';
-import { getUser, session } from '../models/session';
+import { getTasks } from '../models/request';
+import { session } from '../models/session';
 import { ITask, sortTasks, tasks } from '../models/tasks';
 import { current } from '../models/views';
 
-const getTasks = () => {
-	if(!session.loggedIn) return [];
+getTasks();
+
+const filterTasks = () => {
+	if (!session.loggedIn) return [];
 
 	let ret: ITask[] = [];
 
 	switch (current.value) {
 		case 0:
-			ret = tasks.value.filter(e => e.for === getUser().username);
+			ret = tasks.value.filter(e => e.for === session.username);
 			break;
 		case 1:
-			ret = tasks.value.filter(e => e.by === getUser().username);
+			ret = tasks.value.filter(e => e.by === session.username);
 			break;
 		case 2:
 			ret = tasks.value;
@@ -24,30 +27,35 @@ const getTasks = () => {
 	return sortTasks(ret);
 };
 
-const check = (task: ITask) => task.done = !task.done;
+const check = (task: ITask) => { 
+	const state = !task.done;
+	task.done = state;
+	
+	//
+};
 
 </script>
 
 <template>
 	<NavBar />
 	<div class="content">
-		<div class="task card" v-for="task in getTasks()" :key="task.title">
+		<div class="task card" v-for="task in filterTasks()" :key="task.title">
 			<button class="button" @click="check(task)">{{ task.done ? '✘' : '✔' }}</button>
 			<div class="bar">
 				<div>
 					FOR
-					<span>{{task.for}}</span>
+					<span>{{ task.for }}</span>
 				</div>
 				<div>
 					BY
-					<span>{{task.by}}</span>
+					<span>{{ task.by }}</span>
 				</div>
 				<div>
 					DUE
-					<span>{{task.date}}</span>
+					<span>{{ task.date }}</span>
 				</div>
 			</div>
-			<div class="title">{{task.title}}</div>
+			<div class="title">{{ task.title }}</div>
 		</div>
 	</div>
 </template>
