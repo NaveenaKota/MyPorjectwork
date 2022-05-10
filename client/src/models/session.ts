@@ -16,7 +16,7 @@ const sessionNull: ISession = {
 	username: null,
 }
 
-export const session = reactive<ISession>(sessionNull);
+export const session = reactive<ISession>({...sessionNull});
 
 export const startSession = async (username: string, password: string) => {
 	const res: LoginRes = await loginReq(username, password);
@@ -24,12 +24,12 @@ export const startSession = async (username: string, password: string) => {
 	if(res.success !== true)
 		return res.errors[0];
 	else {
-		setSesion(res);
+		setSession(res);
 		return true;
 	}
 };
 
-export const setSesion = (res: LoginRes) => {
+export const setSession = (res: LoginRes) => {
 	const { username, token, avatar } = res.data;
 
 	session.avatar = avatar;
@@ -37,6 +37,8 @@ export const setSesion = (res: LoginRes) => {
 	session.username = username;
 
 	session.loggedIn = true;
+
+	localStorage.setItem('session', JSON.stringify(session));
 };
 
 export const endSession = () => {
@@ -44,4 +46,6 @@ export const endSession = () => {
 	session.loggedIn = sessionNull.loggedIn;
 	session.token = sessionNull.token;
 	session.username = sessionNull.username;
+	
+	localStorage.setItem('session', JSON.stringify(session));
 };

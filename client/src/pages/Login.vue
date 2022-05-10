@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { ref } from 'vue';
-import { setSesion, startSession } from '../models/session';
+import { startSession } from '../models/session';
 import router from '../router';
 
 const username = ref('');
