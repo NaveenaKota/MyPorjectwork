@@ -1,11 +1,11 @@
 require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+import express, { json } from 'express';
+import cors from 'cors';
 
-const usersController = require('./controllers/users');
-const postsController = require('./controllers/posts');
+import usersController from './controllers/users';
+import postsController from './controllers/posts';
 
-const { auth, requireAuth } = require('./models/auth');
+import { auth, requireAuth } from './models/auth';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -19,7 +19,7 @@ const err = (err, req, res, next) => {
 
 app
 	.use(cors())
-	.use(express.json())
+	.use(json())
 	.use(auth)
 	.use('/api/users', usersController)
 	.use('/api/posts', requireAuth, postsController)
