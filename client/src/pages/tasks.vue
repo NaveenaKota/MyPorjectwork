@@ -34,7 +34,7 @@ const check = (task: ITask) => {
 
 </script>
 
-<template>
+<template v-slot = "props">
 	<NavBar />
 	<div class="content">
 		<div class="task card" v-for="task in filterTasks()" :key="task._id">
@@ -56,7 +56,11 @@ const check = (task: ITask) => {
 			<div class="title">{{ task.title }}</div>
 		</div>
 	</div>
-</template>
+	</template>
+	 <template v-slot="props">
+          <span v-show="task > filterTasks" class="has-text-grey"> Thats it! No more tasks found. </span>
+        </template>
+
 
 <style lang="scss" scoped>
 .content {

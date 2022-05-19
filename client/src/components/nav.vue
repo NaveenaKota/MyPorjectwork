@@ -129,6 +129,7 @@ const onAddTask = async () => {
 		</div>
 		<button class="modal-close is-large" aria-label="close" @click="() => modalState = false"></button>
 	</div>
+  
 </template>
 
 <style lang="scss" scoped>

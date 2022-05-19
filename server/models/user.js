@@ -79,6 +79,12 @@ function fromToken(token) {
 		});
 	});
 }
+async function search(s){
+	const users = await collection.find({ $or : [
+		{username: {$regex: s, $options: 'i'} }
+		
+	]}).toArray();
+}
 
 const seed = () => {
 	const l = list.map(e => ({
@@ -103,6 +109,7 @@ module.exports = {
 	update,
 	login,
 	fromToken,
+	search,
 	async getList() {
 		return (await collection.find().toArray()).map(x => ({
 			...x,
